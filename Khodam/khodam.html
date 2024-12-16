@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam Random</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <!-- Favicon kosong untuk mencegah error 404 -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <style>
+        body {
+            font-family: 'Creepster', cursive;
+        }
+    </style>
+</head>
+<body class="bg-black min-h-screen flex items-center justify-center">
+    <!-- Container Utama -->
+    <div class="max-w-md w-full bg-gray-800 p-8 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold mb-6 text-center text-red-600">Cek Khodam</h2>
+        <form id="khodamForm">
+            <div class="mb-4">
+                <input type="text" id="nama" placeholder="Masukkan Nama Kamu" name="nama" 
+                    class="shadow appearance-none border border-red-600 rounded w-full py-3 px-4 text-gray-300 bg-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-red-600">
+            </div>
+            <div class="mb-4 flex justify-center">
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 w-full rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                    Cek
+                </button>
+            </div>
+            <div id="result" class="text-center mt-6"></div>
+        </form>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        const khodamNames = [
+            "Khodam Martabak Manis",
+            "Khodam Kerupuk Udang",
+            "Khodam Es Teh Manis",
+            "Khodam Sate Padang",
+            "Khodam Ketupat Sayur",
+            "Khodam Baso Aci",
+            "Khodam Indomie Goreng",
+            "Khodam Cireng Isi",
+            "Khodam Kopi Sachet",
+            "Khodam Cimol Keju",
+            "Khodam Pisang Coklat",
+            "Khodam Nasi Uduk",
+            "Khodam Pecel Lele",
+            "Khodam Roti Tawar",
+            "Khodam Ayam Geprek",
+            "Khodam Lontong Balap",
+            "Khodam Tahu Bulat",
+            "Khodam Soto Betawi",
+            "Khodam Cilok Sambal Kacang",
+            "Khodam Burger Pinggir Jalan"
+        ];
+
+        function cekKhodam() {
+            const randomIndex = Math.floor(Math.random() * khodamNames.length);
+            const randomKhodam = khodamNames[randomIndex];
+
+            const nama = document.getElementById('nama').value.trim();
+
+            if (nama === '') {
+                alert('Nama tidak boleh kosong!');
+                return;
+            }
+
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = `
+                <p class="text-2xl text-red-600 font-bold">Hai, ${nama}! Khodam kamu adalah:</p>
+                <p class="text-3xl text-white font-bold mt-2">${randomKhodam}</p>
+            `;
+
+            document.getElementById('nama').value = ''; // Kosongkan input nama
+        }
+
+        // Tambahkan event listener ke form
+        document.getElementById('khodamForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            cekKhodam();
+        });
+    </script>
+</body>
+</html>
